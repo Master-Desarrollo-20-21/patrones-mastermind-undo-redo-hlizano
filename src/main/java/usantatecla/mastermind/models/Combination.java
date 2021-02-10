@@ -18,5 +18,13 @@ public abstract class Combination {
 	public static int getWidth() {
 		return Combination.WIDTH;
 	}
+
+	public void setColors(List<Color> colors){
+		this.colors = colors;
+	}
+
+	public List<Color> getColors() {
+		return colors;
+	}
 	
 }
