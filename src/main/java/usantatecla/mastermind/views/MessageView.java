@@ -3,7 +3,7 @@ package usantatecla.mastermind.views;
 public enum MessageView {
 	ATTEMPTS("#attempts attempt(s): "),
 	SECRET("*"),
-	ACTION_COMMAND("Do a action"), 
+	ACTION_COMMAND("Do an action"), 
 	UNDO_COMMAND("Undo previous action"), 
 	REDO_COMMAND("Redo previous action"),
 	RESUME("Do you want to continue"),

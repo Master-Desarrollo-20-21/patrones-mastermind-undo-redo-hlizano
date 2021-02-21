@@ -14,7 +14,7 @@ class UndoCommand extends Command {
   }
 
   protected boolean isActive() {
-    return this.proposalController.undoable();
+    return this.proposalController.isUndoable();
   }
 
 }

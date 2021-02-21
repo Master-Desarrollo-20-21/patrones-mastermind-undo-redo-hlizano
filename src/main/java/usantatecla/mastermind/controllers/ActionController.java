@@ -55,18 +55,12 @@ public class ActionController extends Controller {
 			}
 		}
 		if (error == null){
-			this.addProposedCombination(colors);
+			this.session.addProposedCombination(colors);
 			if (this.isWinner() || this.isLooser()) {
 				this.session.next();
 			}
 		}
 		return error;	
-	}
-
-	@Override
-	public void accept(ControllersVisitor controllersVisitor) {
-		// TODO Auto-generated method stub
-
 	}
 
 }

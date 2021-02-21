@@ -7,39 +7,42 @@ class GameRegistry {
 
   private List<GameMemento> mementos;
   private Game game;
-  private int firstPrevious;
+  private int position;
 
   GameRegistry(Game game) {
     this.game = game;
     this.mementos = new ArrayList<GameMemento>();
-    this.firstPrevious = 0;
-    this.mementos.add(this.firstPrevious, this.game.createMemento());   
+    this.position = 0;
+    this.mementos.add(this.position, this.game.createMemento());   
   }
 
+  // hay una pulga que no encontre, cada vez que se intenta registrar despuès de hacer undo 
+  // se sobre escribe la proposed combination en position y en la position++ 
   void register() {
-    for (int i = 0; i < this.firstPrevious; i++) {
-      this.mementos.remove(0);
-      this.firstPrevious--;
+    int times = this.mementos.size() - this.position - 1; 
+    for (int i = 0; i < times; i++) {
+      this.mementos.remove(mementos.size()-1);      
     }
-    this.mementos.add(this.firstPrevious, this.game.createMemento());
+    this.position++;
+    this.mementos.add(this.position, this.game.createMemento());
   }
 
   void undo() {
-    this.firstPrevious++;
-    this.game.set(this.mementos.get(this.firstPrevious));
+    this.position--;
+    this.game.set(this.mementos.get(this.position));
   }
 
   void redo() {
-    this.firstPrevious--;
-    this.game.set(this.mementos.get(this.firstPrevious));
+    this.position++;
+    this.game.set(this.mementos.get(this.position));
   }
 
   boolean isUndoable() {
-    return this.firstPrevious < this.mementos.size() - 1;
+    return this.position > 0;
   }
 
   boolean isRedoable() {
-    return this.firstPrevious >= 1;
+    return this.position < mementos.size() - 1;
   }
 
 }

@@ -6,7 +6,6 @@ import usantatecla.mastermind.controllers.ProposalController;
 import usantatecla.mastermind.types.Color;
 import usantatecla.mastermind.types.Error;
 import usantatecla.mastermind.views.MessageView;
-import usantatecla.utils.Console;
 
 class ProposalCommand extends Command {
 
@@ -16,8 +15,6 @@ class ProposalCommand extends Command {
 
   @Override
   protected void execute() {
-   
-    Console console = new Console();
 
     Error error;
 		do {
@@ -26,20 +23,7 @@ class ProposalCommand extends Command {
 			if (error != null) {
 				new ErrorView(error).writeln();
 			}
-		} while (error != null);
-		console.writeln();
-		new AttemptsView(proposalController).writeln();
-		new SecretCombinationView(proposalController).writeln();
-		for (int i = 0; i < proposalController.getAttempts(); i++) {
-			new ProposedCombinationView(proposalController).write(i);
-			new ResultView(proposalController).writeln(i);
-		}
-		if (proposalController.isWinner()) {
-			console.writeln(MessageView.WINNER.getMessage());
-		} else if (proposalController.isLooser()) {
-			console.writeln(MessageView.LOOSER.getMessage());
-		}
-
+		} while (error != null);		
   }
 
   @Override

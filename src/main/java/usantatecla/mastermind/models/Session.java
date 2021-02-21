@@ -1,9 +1,7 @@
 package usantatecla.mastermind.models;
 
 import usantatecla.mastermind.types.Color;
-import usantatecla.mastermind.types.Error;
 import java.util.List;
-import usantatecla.mastermind.models.StateValue;
 
 public class Session {
 
@@ -16,6 +14,11 @@ public class Session {
     this.game = new Game();
     this.registry = new GameRegistry(game);
   }
+
+  public void addProposedCombination(List<Color> colors) {
+    this.game.addProposedCombination(colors);
+    this.registry.register();
+}
 
   public StateValue getValueState() {
     return this.state.getValueState();
@@ -37,7 +40,7 @@ public class Session {
     this.registry.undo();
   }
 
-  public boolean undoable() {
+  public boolean isUndoable() {
     return this.registry.isUndoable();
   }
 
@@ -45,7 +48,7 @@ public class Session {
     this.registry.redo();
   }
 
-  public boolean redoable() {
+  public boolean isRedoable() {
     return this.registry.isRedoable();
   }
 

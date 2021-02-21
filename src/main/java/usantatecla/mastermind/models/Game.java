@@ -64,14 +64,13 @@ public class Game {
 	}
 
 	public GameMemento createMemento() {
-        return new GameMemento(secretCombination, proposedCombinations, results, attempts);
+        return new GameMemento(this.proposedCombinations);
 	}
 
-	public void set(GameMemento memento) {
-
-		this.secretCombination.setColors(memento.getSecretCombination().getColors());
+	public void set(GameMemento memento) {	
 		this.proposedCombinations = memento.getProposedCombinations();
-		this.results = memento.getResults();
-		this.attempts = memento.getAttempts();        
+		this.results = memento.getResults(secretCombination);
+		this.attempts = this.proposedCombinations.size();     
     }
+	
 }

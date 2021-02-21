@@ -10,6 +10,10 @@ class ProposedCombination extends Combination {
 		this.colors = colors;
 	}
 
+	public ProposedCombination copy() {
+		return new ProposedCombination(colors);
+	}
+
 	boolean contains(Color color, int position) {
 		return this.colors.get(position) == color;
 	}

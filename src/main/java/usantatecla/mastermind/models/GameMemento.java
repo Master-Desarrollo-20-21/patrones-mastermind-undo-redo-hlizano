@@ -1,31 +1,18 @@
 package usantatecla.mastermind.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 class GameMemento {
 
-	private SecretCombination secretCombination;
-
 	private List<ProposedCombination> proposedCombinations;
 
-	private List<Result> results;
+  public GameMemento(List<ProposedCombination>proposedCombinations) {
+    this.proposedCombinations = new ArrayList<>();
 
-	private int attempts;
-
-  public GameMemento(SecretCombination secretCombination, List<ProposedCombination> proposedCombinations,
-      List<Result> results, int attempts) {
-    this.secretCombination = secretCombination;
-    this.proposedCombinations = proposedCombinations;
-    this.results = results;
-    this.attempts = attempts;
-  }
-
-  public SecretCombination getSecretCombination() {
-    return secretCombination;
-  }
-
-  public void setSecretCombination(SecretCombination secretCombination) {
-    this.secretCombination = secretCombination;
+    for (ProposedCombination proposedCombination : proposedCombinations) {
+        this.proposedCombinations.add(proposedCombination.copy());
+    }
   }
 
   public List<ProposedCombination> getProposedCombinations() {
@@ -36,20 +23,12 @@ class GameMemento {
     this.proposedCombinations = proposedCombinations;
   }
 
-  public List<Result> getResults() {
+  public List<Result> getResults(SecretCombination secretCombination) {
+    List<Result> results = new ArrayList<>();
+    for(ProposedCombination proposedCombination : proposedCombinations){
+      results.add(secretCombination.getResult(proposedCombination));
+    }	
     return results;
-  }
-
-  public void setResults(List<Result> results) {
-    this.results = results;
-  }
-
-  public int getAttempts() {
-    return attempts;
-  }
-
-  public void setAttempts(int attempts) {
-    this.attempts = attempts;
   }
 
 }

@@ -16,7 +16,7 @@ class RedoCommand extends Command {
 
   @Override
   protected boolean isActive() {
-    return this.proposalController.redoable();
+    return this.proposalController.isRedoable();
   }
 
 }

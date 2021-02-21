@@ -6,7 +6,7 @@ import usantatecla.mastermind.models.Session;
 import usantatecla.mastermind.types.Color;
 import usantatecla.mastermind.types.Error;
 
-public class ProposalController extends Controller {
+public class ProposalController extends Controller implements AcceptorController{
 
 	private ActionController actionController;
 	private UndoController undoController;
@@ -51,16 +51,16 @@ public class ProposalController extends Controller {
 		this.undoController.undo();
 	}
 
-	public boolean undoable() {
-		return this.undoController.undoable();
+	public boolean isUndoable() {
+		return this.undoController.isUndoable();
 	}
 
 	public void redo() {
 		this.redoController.redo();
 	}
 
-	public boolean redoable() {
-		return this.redoController.redoable();
+	public boolean isRedoable() {
+		return this.redoController.isRedoable();
 	}
 
 	@Override

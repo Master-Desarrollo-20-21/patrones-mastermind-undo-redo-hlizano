@@ -9,7 +9,9 @@ public abstract class Controller {
 	Controller(Session session) {
 		this.session = session;
 	}
-	
-	public abstract void accept(ControllersVisitor controllersVisitor);
+
+	public int getWidth() {
+		return this.session.getWidth();
+	}
 
 }
